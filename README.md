@@ -9,5 +9,6 @@ ZfcUserDoctrineORM is a Doctrine2 ORM storage adapter for [ZfcUser](https://gith
 Dependencies
 ------------
 
+- [ZfcUser](https://github.com/ZF-Commons/ZfcUser)
 - [DoctrineModule](https://github.com/doctrine/DoctrineModule)
 - [DoctrineORMModule](https://github.com/doctrine/DoctrineORMModule)
