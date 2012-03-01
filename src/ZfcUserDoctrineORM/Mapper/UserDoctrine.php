@@ -4,7 +4,6 @@ namespace ZfcUserDoctrineORM\Mapper;
 
 use Doctrine\ORM\EntityManager,
     ZfcUser\Module as ZfcUser,
-    ZfcUser\Model\User,
     ZfcUser\Model\Mapper\User as UserMapper,
     ZfcBase\EventManager\EventProvider;
 
@@ -12,7 +11,7 @@ class UserDoctrine extends EventProvider implements UserMapper
 {
     protected $em;
 
-    public function persist(User $user)
+    public function persist($user)
     {
         $em = $this->getEntityManager();
         $this->events()->trigger(__FUNCTION__ . '.pre', $this, array('user' => $user, 'em' => $em));
