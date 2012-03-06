@@ -2,7 +2,7 @@
 
 namespace ZfcUserDoctrineORM\Entity;
 
-use ZfcUser\Model\UserMetaBase as UserMetaModel;
+use ZfcUser\Model\UserMeta as UserMetaModel;
 
 class UserMetaMappedSuperClass extends UserMetaModel
 {}

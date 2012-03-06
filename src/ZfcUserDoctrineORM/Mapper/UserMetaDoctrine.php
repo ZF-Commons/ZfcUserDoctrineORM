@@ -4,19 +4,19 @@ namespace ZfcUserDoctrineORM\Mapper;
 
 use Doctrine\ORM\EntityManager,
     ZfcUser\Module as ZfcUser,
-    ZfcUser\Model\UserMeta as UserMetaModel,
-    ZfcUser\Model\Mapper\UserMeta as UserMetaMapper,
+    ZfcUser\Model\UserMeta,
+    ZfcUser\Model\UserMetaMapperInterface,
     ZfcBase\EventManager\EventProvider;
 
-class UserMetaDoctrine extends EventProvider implements UserMetaMapper
+class UserMetaDoctrine extends EventProvider implements UserMetaMapperInterface
 {
 
-    public function add(UserMetaModel $userMeta)
+    public function add(UserMeta $userMeta)
     {
         return $this->persist($userMeta);
     }
 
-    public function update(UserMetaModel $userMeta)
+    public function update(UserMeta $userMeta)
     {
         return $this->persist($userMeta);
     }
