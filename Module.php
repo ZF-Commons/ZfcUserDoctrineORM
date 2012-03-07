@@ -44,7 +44,7 @@ class Module implements AutoloaderProvider
         $evm = $em->getEventManager();
         $listener = new ResolveTargetEntityListener;
         $listener->addResolveTargetEntity(
-            'ZfcUser\Model\User',
+            'ZfcUser\Model\UserInterface',
             ZfcUser::getOption('user_model_class'),
             array()
         );
