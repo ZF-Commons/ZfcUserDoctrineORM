@@ -5,10 +5,10 @@ namespace ZfcUserDoctrineORM\Mapper;
 use Doctrine\ORM\EntityManager,
     ZfcUser\Module as ZfcUser,
     ZfcUser\Model\User,
-    ZfcUser\Model\Mapper\User as UserMapper,
+    ZfcUser\Model\UserMapperInterface,
     ZfcBase\EventManager\EventProvider;
 
-class UserDoctrine extends EventProvider implements UserMapper
+class UserDoctrine extends EventProvider implements UserMapperInterface
 {
     protected $em;
 
