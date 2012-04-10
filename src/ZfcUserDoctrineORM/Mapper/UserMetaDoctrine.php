@@ -4,19 +4,19 @@ namespace ZfcUserDoctrineORM\Mapper;
 
 use Doctrine\ORM\EntityManager,
     ZfcUser\Module as ZfcUser,
-    ZfcUser\Model\UserMeta,
+    ZfcUser\Model\UserMetaInterface,
     ZfcUser\Model\UserMetaMapperInterface,
     ZfcBase\EventManager\EventProvider;
 
 class UserMetaDoctrine extends EventProvider implements UserMetaMapperInterface
 {
 
-    public function add(UserMeta $userMeta)
+    public function add(UserMetaInterface $userMeta)
     {
         return $this->persist($userMeta);
     }
 
-    public function update(UserMeta $userMeta)
+    public function update(UserMetaInterface $userMeta)
     {
         return $this->persist($userMeta);
     }
@@ -29,7 +29,7 @@ class UserMetaDoctrine extends EventProvider implements UserMetaMapperInterface
         return $userMeta;
     }
 
-    public function persist(UserMetaModel $userMeta)
+    public function persist(UserMetaInterface $userMeta)
     {
         $em = $this->getEntityManager();
         $this->events()->trigger(__FUNCTION__ . '.pre', $this, array('userMeta' => $userMeta, 'em' => $em));
