@@ -10,7 +10,7 @@
         <many-to-one field="user" column="user_id" target-entity="ZfcUser\Model\User" >
             <join-column name="user_id" referenced-column-name="user_id" />
         </many-to-one>
-        <id name="metaKey" type="string" column="meta_key" />
+        <id name="meta_key" type="string" column="meta_key" />
         <field name="meta" column="meta" type="text" />
 
     </mapped-superclass>
