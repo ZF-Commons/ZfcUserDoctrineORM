@@ -24,7 +24,7 @@ class UserMetaDoctrine extends EventProvider implements UserMetaMapperInterface
     public function get($userId, $metaKey)
     {
         $em = $this->getEntityManager();
-        $userMeta = $this->getUserMetaRepository()->findOneBy(array('user' => $userId, 'metaKey' => $metaKey));
+        $userMeta = $this->getUserMetaRepository()->findOneBy(array('user' => $userId, 'meta_key' => $metaKey));
         $this->events()->trigger(__FUNCTION__, $this, array('userMeta' => $userMeta, 'em' => $em));
         return $userMeta;
     }
