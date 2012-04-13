@@ -7,7 +7,7 @@
     <mapped-superclass name="ZfcUserDoctrineORM\Entity\UserMetaMappedSuperClass">
 
         <id name="user" association-key="true" />
-        <many-to-one field="user" column="user_id" target-entity="ZfcUser\Model\User" >
+        <many-to-one field="user" column="user_id" target-entity="ZfcUserDoctrineORM\Entity\User" >
             <join-column name="user_id" referenced-column-name="user_id" />
         </many-to-one>
         <id name="meta_key" type="string" column="meta_key" />
