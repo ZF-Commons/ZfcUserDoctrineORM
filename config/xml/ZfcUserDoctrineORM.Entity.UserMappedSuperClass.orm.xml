@@ -6,7 +6,7 @@
 
     <mapped-superclass name="ZfcUserDoctrineORM\Entity\UserMappedSuperClass">
 
-        <id name="userId" type="integer" column="user_id"><generator strategy="AUTO" /></id>
+        <id name="user_id" type="integer" column="user_id"><generator strategy="AUTO" /></id>
         <field name="username" column="username" type="string" unique="true" nullable="true" />
         <field name="email" column="email" type="string" unique="true" length="100" />
         <field name="display_name" column="display_name" type="string" length="50" nullable="true" />
