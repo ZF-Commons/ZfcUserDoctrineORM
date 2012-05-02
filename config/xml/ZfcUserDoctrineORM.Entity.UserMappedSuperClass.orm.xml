@@ -12,9 +12,9 @@
         <field name="display_name" column="display_name" type="string" length="50" nullable="true" />
         <field name="password" column="password" type="string" length="128" />
         <field name="last_login" column="last_login" type="datetime" nullable="true" />
-        <field name="last_ip" column="last_ip" type="integer" nullable="true" />
+        <field name="last_ip" column="last_ip" type="string" length="45" nullable="true" />
         <field name="register_time" column="register_time" type="datetime" />
-        <field name="register_ip" column="register_ip" type="integer" />
+        <field name="register_ip" column="register_ip" type="string" length="45" />
         <field name="active" column="active" type="boolean" />
         <field name="enabled" column="enabled" type="boolean" />
 
