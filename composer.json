@@ -1,0 +1,30 @@
+{
+    "name": "zf-commons/ZfcUserDoctrineORM",
+    "description": "Doctrine2 ORM storage adapter for ZfcUser.",
+    "type": "library",
+    "keywords": [
+        "zf2"
+    ],
+    "homepage": "https://github.com/ZF-Commons/ZfcUserDoctrineORM",
+    "authors": [
+        {
+            "name": "Evan Coury",
+            "email": "me@evancoury.com",
+            "homepage": "http://blog.evan.pro/"
+        },
+        {
+            "name": "Kyle Spraggs",
+            "email": "theman@spiffyjr.me",
+            "homepage": "http://www.spiffyjr.me/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zf-commons/ZfcUser": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "./"
+        ]
+    }
+}
