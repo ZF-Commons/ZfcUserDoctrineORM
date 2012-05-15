@@ -20,6 +20,8 @@
     ],
     "require": {
         "php": ">=5.3.3",
+	"zendframework/zendframework": "dev-master",
+	"zf-commons/ZfcBase": "dev-master",
         "zf-commons/ZfcUser": "dev-master"
     },
     "autoload": {
