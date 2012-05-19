@@ -2,16 +2,16 @@
 
 namespace ZfcUserDoctrineORM;
 
-use Zend\Module\Manager,
-    Zend\Module\Consumer\AutoloaderProvider,
+use Zend\ModuleManager\ModuleManager,
+    Zend\ModuleManager\Feature\AutoloaderProviderInterface,
     ZfcUserDoctrineORM\Event\ResolveTargetEntityListener,
     ZfcUser\Module as ZfcUser,
     Doctrine\ORM\Events,
     Zend\EventManager\StaticEventManager;
 
-class Module implements AutoloaderProvider
+class Module implements AutoloaderProviderInterface
 {
-    public function init(Manager $moduleManager)
+    public function init(ModuleManager $moduleManager)
     {
         $events = StaticEventManager::getInstance();
         $events->attach('bootstrap', 'bootstrap', array($this, 'attachDoctrineEvents'), 100);
