@@ -21,8 +21,9 @@
     "require": {
         "php": ">=5.3.3",
 	"zendframework/zendframework": "dev-master",
-	"zf-commons/ZfcBase": "dev-master",
-        "zf-commons/ZfcUser": "dev-master"
+	"zf-commons/zfc-base": "dev-master",
+        "zf-commons/zfc-user": "dev-master",
+	"doctrine/DoctrineORMModule": "dev-master"
     },
     "autoload": {
         "classmap": [
