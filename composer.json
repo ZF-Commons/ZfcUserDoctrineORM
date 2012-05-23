@@ -20,14 +20,17 @@
     ],
     "require": {
         "php": ">=5.3.3",
-	"zendframework/zendframework": "dev-master",
-	"zf-commons/zfc-base": "dev-master",
+        "zendframework/zendframework": "dev-master",
+        "zf-commons/zfc-base": "dev-master",
         "zf-commons/zfc-user": "dev-master",
-	"doctrine/DoctrineORMModule": "dev-master"
+        "doctrine/DoctrineORMModule": "dev-master"
     },
     "autoload": {
         "psr-0": {
-            "ZfcUserDoctrineORM": "module/ZfcUserDoctrineORM/src"
-        }
+            "ZfcUserDoctrineORM": "src/"
+        },
+        "classmap": [
+            "./"
+        ]
     }
 }
