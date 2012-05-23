@@ -11,6 +11,11 @@ use Doctrine\ORM\EntityManager,
 class UserDoctrine extends EventProvider implements UserMapperInterface
 {
     protected $em;
+    
+    public function __construct(EntityManager $em)
+    {
+        $this->setEntityManager($em);
+    }
 
     public function persist(UserInterface $user)
     {

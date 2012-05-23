@@ -10,7 +10,13 @@ use Doctrine\ORM\EntityManager,
 
 class UserMetaDoctrine extends EventProvider implements UserMetaMapperInterface
 {
-
+    protected $em;
+    
+    public function __construct(EntityManager $em)
+    {
+        $this->setEntityManager($em);
+    }
+    
     public function add(UserMetaInterface $userMeta)
     {
         return $this->persist($userMeta);
