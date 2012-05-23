@@ -30,6 +30,35 @@ class Module implements AutoloaderProviderInterface
             ),
         );
     }
+    
+    public function getServiceConfiguration()
+    {
+        return array(
+                'factories' => array(
+                    'zfcuser_user_mapper' => function ($sm) {
+                    $di = $sm->get('Di');
+                    $em = $di->get('Doctrine\ORM\EntityManager');
+                    return new \ZfcUserDoctrineORM\Mapper\UserDoctrine($em);
+                },
+                'zfcuser_usermeta_mapper' => function ($sm) {
+                    $di = $sm->get('Di');
+                    $em = $di->get('Doctrine\ORM\EntityManager');
+                    return new \ZfcUserDoctrineORM\Mapper\UserMetaDoctrine($em);
+                },
+                'ZfcUserDoctrineORM\Mapper\UserMetaDoctrine' => function ($sm) {
+                    $di = $sm->get('Di');
+                    $em = $di->get('Doctrine\ORM\EntityManager');
+                    return new \ZfcUserDoctrineORM\Mapper\UserMetaDoctrine($em);
+                },
+                'ZfcUserDoctrineORM\Mapper\UserDoctrine' => function ($sm) {
+                    $di = $sm->get('Di');
+                    $em = $di->get('Doctrine\ORM\EntityManager');
+                    var_dump($em);
+                    return new \ZfcUserDoctrineORM\Mapper\UserDoctrine($em);
+                },
+            ),
+        );
+    }
 
     public function getConfig()
     {
