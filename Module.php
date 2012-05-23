@@ -45,17 +45,6 @@ class Module implements AutoloaderProviderInterface
                     $em = $di->get('Doctrine\ORM\EntityManager');
                     return new \ZfcUserDoctrineORM\Mapper\UserMetaDoctrine($em);
                 },
-                'ZfcUserDoctrineORM\Mapper\UserMetaDoctrine' => function ($sm) {
-                    $di = $sm->get('Di');
-                    $em = $di->get('Doctrine\ORM\EntityManager');
-                    return new \ZfcUserDoctrineORM\Mapper\UserMetaDoctrine($em);
-                },
-                'ZfcUserDoctrineORM\Mapper\UserDoctrine' => function ($sm) {
-                    $di = $sm->get('Di');
-                    $em = $di->get('Doctrine\ORM\EntityManager');
-                    var_dump($em);
-                    return new \ZfcUserDoctrineORM\Mapper\UserDoctrine($em);
-                },
             ),
         );
     }
