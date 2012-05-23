@@ -34,8 +34,8 @@ class Module implements AutoloaderProviderInterface
     public function getServiceConfiguration()
     {
         return array(
-                'factories' => array(
-                    'zfcuser_user_mapper' => function ($sm) {
+            'factories' => array(
+                'zfcuser_user_mapper' => function ($sm) {
                     $di = $sm->get('Di');
                     $em = $di->get('Doctrine\ORM\EntityManager');
                     return new \ZfcUserDoctrineORM\Mapper\UserDoctrine($em);
@@ -44,6 +44,16 @@ class Module implements AutoloaderProviderInterface
                     $di = $sm->get('Di');
                     $em = $di->get('Doctrine\ORM\EntityManager');
                     return new \ZfcUserDoctrineORM\Mapper\UserMetaDoctrine($em);
+                },
+                'ZfcUserDoctrineORM\Mapper\UserMetaDoctrine' => function ($sm) {
+                    $di = $sm->get('Di');
+                    $em = $di->get('Doctrine\ORM\EntityManager');
+                    return new \ZfcUserDoctrineORM\Mapper\UserMetaDoctrine($em);
+                },
+                'ZfcUserDoctrineORM\Mapper\UserDoctrine' => function ($sm) {
+                    $di = $sm->get('Di');
+                    $em = $di->get('Doctrine\ORM\EntityManager');
+                    return new \ZfcUserDoctrineORM\Mapper\UserDoctrine($em);
                 },
             ),
         );

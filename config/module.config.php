@@ -23,16 +23,6 @@ return array(
                     ),
                 )
             ),
-            'ZfcUserDoctrineORM\Mapper\UserDoctrine' => array(
-                'parameters' => array(
-                    'em' => 'zfcuser_doctrine_em',
-                ),
-            ),
-            'ZfcUserDoctrineORM\Mapper\UserMetaDoctrine' => array(
-                'parameters' => array(
-                    'em' => 'zfcuser_doctrine_em',
-                ),
-            ),
         ),
     ),
 );
