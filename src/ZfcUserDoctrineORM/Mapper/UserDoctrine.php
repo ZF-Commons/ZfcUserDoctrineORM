@@ -4,6 +4,7 @@ namespace ZfcUserDoctrineORM\Mapper;
 
 use Doctrine\ORM\EntityManager,
     ZfcUser\Module as ZfcUser,
+    Doctrine\ORM\EntityManager,
     ZfcUser\Model\UserInterface,
     ZfcUser\Model\UserMapperInterface,
     ZfcBase\EventManager\EventProvider;
@@ -11,6 +12,11 @@ use Doctrine\ORM\EntityManager,
 class UserDoctrine extends EventProvider implements UserMapperInterface
 {
     protected $em;
+    
+    public function __construct(EntityManager $em)
+    {
+        $this->setEntityManager($em);
+    }
 
     public function persist(UserInterface $user)
     {
