@@ -7,7 +7,7 @@ return array(
     'di' => array(
         'instance' => array(
             'alias' => array(
-                'zfcuser_doctrine_em'     => 'doctrine_em',
+                'zfcuser_doctrine_em'     => 'Doctrine\ORM\EntityManager',
                 'zfcuser_user_mapper'     => 'ZfcUserDoctrineORM\Mapper\UserDoctrine',
                 'zfcuser_usermeta_mapper' => 'ZfcUserDoctrineORM\Mapper\UserMetaDoctrine',
             ),
