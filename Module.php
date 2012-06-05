@@ -7,9 +7,12 @@ use Zend\ModuleManager\ModuleManager,
     ZfcUserDoctrineORM\Event\ResolveTargetEntityListener,
     ZfcUser\Module as ZfcUser,
     Doctrine\ORM\Events,
-    Zend\EventManager\StaticEventManager;
+    Zend\EventManager\StaticEventManager,
+    Zend\ModuleManager\Feature\ServiceProviderInterface;
 
-class Module implements AutoloaderProviderInterface
+class Module implements
+    AutoloaderProviderInterface,
+    ServiceProviderInterface
 {
     public function init(ModuleManager $moduleManager)
     {
@@ -36,15 +39,22 @@ class Module implements AutoloaderProviderInterface
         return array(
             'factories' => array(
                 'zfcuser_user_mapper' => function ($sm) {
-                    $di = $sm->get('Di');
-                    $em = $di->get('Doctrine\ORM\EntityManager');
-                    return new \ZfcUserDoctrineORM\Mapper\UserDoctrine($em);
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $class = ZfcUser::getOption('user_model_class');
+                    return new \ZfcBase\Mapper\DoctrineMapperProxy($em, $class);
                 },
                 'zfcuser_usermeta_mapper' => function ($sm) {
-                    $di = $sm->get('Di');
-                    $em = $di->get('Doctrine\ORM\EntityManager');
-                    return new \ZfcUserDoctrineORM\Mapper\UserMetaDoctrine($em);
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $class = ZfcUser::getOption('usermeta_model_class');
+                    return new \ZfcUserDoctrineORM\Mapper\UserMeta($em, $class);
                 },
+                'zfcuser_user_repository' => function ($sm) {
+                    $em = $sm->get('Doctrine\ORM\EntityManager');
+                    $class = ZfcUser::getOption('user_model_class');
+                    $doctrineRepository = $em->getRepository($class);
+                    $repository = new \ZfcUserDoctrineORM\Repository\User($em, $doctrineRepository);
+                    return $repository;
+                }
             ),
         );
     }
