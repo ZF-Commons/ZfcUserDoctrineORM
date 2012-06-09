@@ -2,19 +2,42 @@
 
 namespace ZfcUserDoctrineORM;
 
-use Zend\ModuleManager\ModuleManager,
-    Zend\ModuleManager\Feature\AutoloaderProviderInterface,
-    ZfcUserDoctrineORM\Event\ResolveTargetEntityListener,
-    ZfcUser\Module as ZfcUser,
-    Doctrine\ORM\Events,
-    Zend\EventManager\StaticEventManager;
+use Doctrine\ORM\Mapping\Driver\XmlDriver;
+use Zend\EventManager\StaticEventManager;
+use ZfcUserDoctrineORM\Event\ResolveTargetEntityListener;
+use ZfcUser\Module as ZfcUser;
 
-class Module implements AutoloaderProviderInterface
+class Module
 {
-    public function init(ModuleManager $moduleManager)
+    public function init($mm)
     {
-        $events = StaticEventManager::getInstance();
-        $events->attach('bootstrap', 'bootstrap', array($this, 'attachDoctrineEvents'), 100);
+        // Load Doctrine mapping information from XML.
+        $sharedEvents = $mm->events()->getSharedManager();
+        $sharedEvents->attach('DoctrineORMModule', 'loadDrivers', function($e) {
+            $chain = $e->getTarget();
+
+            if (ZfcUser::getOption('load_default_entities')) {
+                $chain->addDriver(new XmlDriver(__DIR__ . '/config/xml/entity'), 'ZfcUserDoctrineORM\Entity');
+            }
+
+            $chain->addDriver(new XmlDriver(__DIR__ . '/config/xml/model'), 'ZfcUser\Model');
+        });
+    }
+
+    public function onBootstrap($e)
+    {
+        $app = $e->getParam('application');
+        $sm  = $app->getServiceManager();
+        $em  = $sm->get('zfcuser_doctrine_em');
+        $evm = $em->getEventManager();
+
+        $listener = new ResolveTargetEntityListener;
+        $listener->addResolveTargetEntity(
+            'ZfcUser\Model\UserInterface',
+            ZfcUser::getOption('user_model_class'),
+            array()
+        );
+        $evm->addEventListener(\Doctrine\ORM\Events::loadClassMetadata, $listener);
     }
 
     public function getAutoloaderConfig()
@@ -34,16 +57,25 @@ class Module implements AutoloaderProviderInterface
     public function getServiceConfiguration()
     {
         return array(
+            'aliases' => array(
+                'zfcuser_doctrine_em' => 'doctrine_orm_default_entitymanager',
+
+            ),
             'factories' => array(
+                'zfcuser_user_repository' => function ($sm) {
+                    $mapper = $sm->get('zfcuser_user_mapper');
+                    return new Repository\User($mapper);
+                },
+
                 'zfcuser_user_mapper' => function ($sm) {
-                    $di = $sm->get('Di');
-                    $em = $di->get('Doctrine\ORM\EntityManager');
-                    return new \ZfcUserDoctrineORM\Mapper\UserDoctrine($em);
+                    return new \ZfcUserDoctrineORM\Mapper\User(
+                        $sm->get('zfcuser_doctrine_em')
+                    );
                 },
                 'zfcuser_usermeta_mapper' => function ($sm) {
-                    $di = $sm->get('Di');
-                    $em = $di->get('Doctrine\ORM\EntityManager');
-                    return new \ZfcUserDoctrineORM\Mapper\UserMetaDoctrine($em);
+                    return new \ZfcUserDoctrineORM\Mapper\UserMeta(
+                        $sm->get('zfcuser_doctrine_em')
+                    );
                 },
             ),
         );
@@ -52,20 +84,5 @@ class Module implements AutoloaderProviderInterface
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
-    }
-
-    public function attachDoctrineEvents($e)
-    {
-        $app = $e->getParam('application');
-        $locator = $app->getLocator();
-        $em = $locator->get('zfcuser_doctrine_em');
-        $evm = $em->getEventManager();
-        $listener = new ResolveTargetEntityListener;
-        $listener->addResolveTargetEntity(
-            'ZfcUser\Model\UserInterface',
-            ZfcUser::getOption('user_model_class'),
-            array()
-        );
-        $evm->addEventListener(Events::loadClassMetadata, $listener);
     }
 }
