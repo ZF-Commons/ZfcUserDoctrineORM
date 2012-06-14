@@ -9,21 +9,6 @@ use ZfcUser\Module as ZfcUser;
 
 class Module
 {
-    public function init($mm)
-    {
-        // Load Doctrine mapping information from XML.
-        $sharedEvents = $mm->events()->getSharedManager();
-        $sharedEvents->attach('DoctrineORMModule', 'loadDrivers', function($e) {
-            $chain = $e->getTarget();
-
-            if (ZfcUser::getOption('load_default_entities')) {
-                $chain->addDriver(new XmlDriver(__DIR__ . '/config/xml/entity'), 'ZfcUserDoctrineORM\Entity');
-            }
-
-            $chain->addDriver(new XmlDriver(__DIR__ . '/config/xml/model'), 'ZfcUser\Model');
-        });
-    }
-
     public function onBootstrap($e)
     {
         $app = $e->getParam('application');
@@ -38,6 +23,12 @@ class Module
             array()
         );
         $evm->addEventListener(\Doctrine\ORM\Events::loadClassMetadata, $listener);
+
+        // Add the default entity driver only if specified in configuration
+        if (ZfcUser::getOption('enable_default_entities')) {
+            $chain = $sm->get('doctrine.driver.orm_default');
+            $chain->addDriver(new XmlDriver(__DIR__ . '/config/xml/entity'), 'ZfcUserDoctrineORM\Entity');
+        }
     }
 
     public function getAutoloaderConfig()
