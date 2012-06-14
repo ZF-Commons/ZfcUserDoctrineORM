@@ -3,7 +3,7 @@ return array(
     'doctrine' => array(
         'driver' => array(
             'zfcuser_model' => array(
-                'type'  => 'Doctrine\ORM\Mapping\Driver\XmlDriver',
+                'class' => 'Doctrine\ORM\Mapping\Driver\XmlDriver',
                 'paths' => __DIR__ . '/xml/model'
             ),
 
