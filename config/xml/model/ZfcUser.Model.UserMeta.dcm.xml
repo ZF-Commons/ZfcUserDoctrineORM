@@ -4,10 +4,10 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="ZfcUserDoctrineORM\Entity\UserMetaMappedSuperClass">
+    <mapped-superclass name="ZfcUser\Model\UserMeta" table="user_meta">
 
         <id name="user" association-key="true" />
-        <many-to-one field="user" column="user_id" target-entity="ZfcUserDoctrineORM\Entity\User" >
+        <many-to-one field="user" column="user_id" target-entity="ZfcUser\Model\User" >
             <join-column name="user_id" referenced-column-name="user_id" />
         </many-to-one>
         <id name="meta_key" type="string" column="meta_key" />
