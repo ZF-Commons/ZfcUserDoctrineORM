@@ -1,28 +1,24 @@
 <?php
 return array(
-    'zfcuser' => array(
-        'user_model_class'          => 'ZfcUserDoctrineORM\Entity\User',
-        'usermeta_model_class'      => 'ZfcUserDoctrineORM\Entity\UserMeta',
-    ),
-    'di' => array(
-        'instance' => array(
-            'alias' => array(
-                'zfcuser_doctrine_em'     => 'Doctrine\ORM\EntityManager',
-                'zfcuser_user_mapper'     => 'ZfcUserDoctrineORM\Mapper\UserDoctrine',
-                'zfcuser_usermeta_mapper' => 'ZfcUserDoctrineORM\Mapper\UserMetaDoctrine',
+    'doctrine' => array(
+        'driver' => array(
+            'zfcuser_model' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\XmlDriver',
+                'paths' => __DIR__ . '/xml/model'
             ),
-            'orm_driver_chain' => array(
-                'parameters' => array(
-                    'drivers' => array(
-                        'zfcuser_xml_driver' => array(
-                            'class'          => 'Doctrine\ORM\Mapping\Driver\XmlDriver',
-                            'namespace'      => 'ZfcUserDoctrineORM\Entity',
-                            'paths'          => array(__DIR__ . '/xml'),
-                            'file_extension' => '.orm.xml',
-                        ),
-                    ),
+
+            'orm_default' => array(
+                'drivers' => array(
+                    'ZfcUser\Model'  => 'zfcuser_model'
                 )
-            ),
-        ),
+            )
+        )
     ),
+
+    'zfcuser' => array(
+        'enable_default_entities' => true,
+
+        'user_model_class'        => 'ZfcUserDoctrineORM\Entity\User',
+        'usermeta_model_class'    => 'ZfcUserDoctrineORM\Entity\UserMeta',
+    )
 );
