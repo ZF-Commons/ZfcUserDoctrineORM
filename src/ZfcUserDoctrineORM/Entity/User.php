@@ -2,7 +2,7 @@
 
 namespace ZfcUserDoctrineORM\Entity;
 
-use ZfcUser\Model\User as UserModel;
+use ZfcUser\Entity\User as ZfcUserEntity;
 
-class User extends UserModel
+class User extends ZfcUserEntity
 {}
