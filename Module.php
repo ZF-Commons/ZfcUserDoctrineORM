@@ -3,31 +3,20 @@
 namespace ZfcUserDoctrineORM;
 
 use Doctrine\ORM\Mapping\Driver\XmlDriver;
-use Zend\EventManager\StaticEventManager;
-use ZfcUserDoctrineORM\Event\ResolveTargetEntityListener;
 use ZfcUser\Module as ZfcUser;
 
 class Module
 {
     public function onBootstrap($e)
     {
-        $app = $e->getParam('application');
-        $sm  = $app->getServiceManager();
-        $em  = $sm->get('zfcuser_doctrine_em');
-        $evm = $em->getEventManager();
-
-        $listener = new ResolveTargetEntityListener;
-        $listener->addResolveTargetEntity(
-            'ZfcUser\Model\UserInterface',
-            ZfcUser::getOption('user_model_class'),
-            array()
-        );
-        $evm->addEventListener(\Doctrine\ORM\Events::loadClassMetadata, $listener);
+        $app     = $e->getParam('application');
+        $sm      = $app->getServiceManager();
+        $options = $sm->get('zfcuser_module_options');
 
         // Add the default entity driver only if specified in configuration
-        if (ZfcUser::getOption('enable_default_entities')) {
+        if ($options->getEnableDefaultEntities()) {
             $chain = $sm->get('doctrine.driver.orm_default');
-            $chain->addDriver(new XmlDriver(__DIR__ . '/config/xml/entity'), 'ZfcUserDoctrineORM\Entity');
+            $chain->addDriver(new XmlDriver(__DIR__ . '/config/xml/zfcuserdoctrineorm'), 'ZfcUserDoctrineORM\Entity');
         }
     }
 
@@ -53,19 +42,14 @@ class Module
 
             ),
             'factories' => array(
-                'zfcuser_user_repository' => function ($sm) {
-                    $mapper = $sm->get('zfcuser_user_mapper');
-                    return new Repository\User($mapper);
+                'zfcuser_module_options' => function ($sm) {
+                    $config = $sm->get('Configuration');
+                    return new Options\ModuleOptions(isset($config['zfcuser']) ? $config['zfcuser'] : array());
                 },
-
                 'zfcuser_user_mapper' => function ($sm) {
                     return new \ZfcUserDoctrineORM\Mapper\User(
-                        $sm->get('zfcuser_doctrine_em')
-                    );
-                },
-                'zfcuser_usermeta_mapper' => function ($sm) {
-                    return new \ZfcUserDoctrineORM\Mapper\UserMeta(
-                        $sm->get('zfcuser_doctrine_em')
+                        $sm->get('zfcuser_doctrine_em'),
+                        $sm->get('zfcuser_module_options')
                     );
                 },
             ),
