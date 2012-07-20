@@ -34,7 +34,7 @@ class Module
         );
     }
     
-    public function getServiceConfiguration()
+    public function getServiceConfig()
     {
         return array(
             'aliases' => array(
