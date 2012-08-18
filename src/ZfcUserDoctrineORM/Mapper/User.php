@@ -25,6 +25,12 @@ class User extends ZfcUserMapper
         $this->options = $options;
     }
 
+    public function findAll()
+    {
+        $er = $this->em->getRepository($this->options->getUserEntityClass());
+        return $er->findAll();
+    }
+
     public function findByEmail($email)
     {
         $er = $this->em->getRepository($this->options->getUserEntityClass());
