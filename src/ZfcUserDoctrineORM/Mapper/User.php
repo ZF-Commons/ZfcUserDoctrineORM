@@ -59,9 +59,10 @@ class User extends ZfcUserMapper
         return $this->persist($entity);
     }
 
-    public function delete($entity)
+    public function remove($entity)
     {
-        return $this->em->delete($entity);
+        $this->em->remove($entity);
+        $this->em->flush();
     }
 
     protected function persist($entity)
