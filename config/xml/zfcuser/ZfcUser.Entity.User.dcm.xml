@@ -11,7 +11,7 @@
         </id>
 
         <field name="username" type="string" length="255" unique="true" nullable="true" />
-        <field name="email" type="string" unique="true" length="255" />
+        <field name="email" type="string" unique="true" length="255" nullable="true"/>
         <field name="displayName" column="display_name" type="string" length="50" nullable="true" />
         <field name="password" type="string" length="128" />
 
