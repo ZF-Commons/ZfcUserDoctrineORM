@@ -14,7 +14,7 @@
         <field name="email" type="string" unique="true" length="255" nullable="true"/>
         <field name="displayName" column="display_name" type="string" length="50" nullable="true" />
         <field name="password" type="string" length="128" />
-        <field name="state" type="smallint" />
+        <field name="state" type="smallint" nullable="true"/>
 
     </mapped-superclass>
 
