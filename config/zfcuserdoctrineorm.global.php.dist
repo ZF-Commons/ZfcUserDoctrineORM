@@ -1,0 +1,29 @@
+<?php
+/**
+ * ZfcUserDoctrineORM Configuration
+ *
+ * If you have a ./config/autoload/ directory set up for your project, you can
+ * drop this config file in it and change the values as you wish.
+ */
+$settings = array(
+    /**
+     * Enable default entity driver
+     *
+     * Set to false if you want to use your own entity class that uses "user" 
+     * as table name (that is the name of default user entity)
+     *
+     * Accepted values: boolean true or false
+     */
+    //'enable_default_entities' => true,
+    
+    /**
+     * End of ZfcUserDoctrineORM configuration
+     */
+);
+
+/**
+ * You do not need to edit below this line
+ */
+return array(
+    'zfcuser' => $settings,
+);
