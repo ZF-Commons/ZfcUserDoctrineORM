@@ -1,6 +1,6 @@
 ZfcUserDoctrineORM
 ==================
-Version 0.0.1 Created by Evan Coury and the ZF-Commons team
+Version 0.1.1 Created by Kyle Spraggs and the ZF-Commons team
 
 Introduction
 ------------
