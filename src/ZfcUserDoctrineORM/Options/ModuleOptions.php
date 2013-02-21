@@ -22,6 +22,7 @@ class ModuleOptions extends BaseModuleOptions
     public function setEnableDefaultEntities($enableDefaultEntities)
     {
         $this->enableDefaultEntities = $enableDefaultEntities;
+        
         return $this;
     }
 

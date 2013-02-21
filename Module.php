@@ -3,7 +3,6 @@
 namespace ZfcUserDoctrineORM;
 
 use Doctrine\ORM\Mapping\Driver\XmlDriver;
-use ZfcUser\Module as ZfcUser;
 
 class Module
 {
@@ -33,7 +32,7 @@ class Module
             ),
         );
     }
-    
+
     public function getServiceConfig()
     {
         return array(
