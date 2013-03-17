@@ -47,9 +47,12 @@ class Module
                     return new Options\ModuleOptions(isset($config['zfcuser']) ? $config['zfcuser'] : array());
                 },
                 'zfcuser_user_mapper' => function ($sm) {
+                    $options = $sm->get('zfcuser_module_options');
+
                     return new \ZfcUserDoctrineORM\Mapper\User(
                         $sm->get('zfcuser_doctrine_em'),
-                        $sm->get('zfcuser_module_options')
+                        $sm->get('zfcuser_module_options'),
+                        $options->getAuthIdentityFields()
                     );
                 },
             ),
