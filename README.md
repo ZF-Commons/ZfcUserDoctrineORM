@@ -6,6 +6,13 @@ Introduction
 ------------
 ZfcUserDoctrineORM is a Doctrine2 ORM storage adapter for [ZfcUser](https://github.com/ZF-Commons/ZfcUser).
 
+Options
+-------
+
+The following options are available:
+
+- **enable_default_entities** - Boolean value, determines if the default User entity should be enabled. Set it to false in order to extend ZfcUser\Entity\User with your own entity. Default is true.
+
 Dependencies
 ------------
 
