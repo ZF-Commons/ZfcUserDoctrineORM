@@ -3,9 +3,10 @@
 namespace ZfcUserDoctrineORM;
 
 use Doctrine\ORM\Mapping\Driver\XmlDriver;
-use ZfcUser\Module as ZfcUser;
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
 
-class Module
+class Module implements AutoloaderProviderInterface, ServiceProviderInterface
 {
     public function onBootstrap($e)
     {
@@ -17,6 +18,12 @@ class Module
         if ($options->getEnableDefaultEntities()) {
             $chain = $sm->get('doctrine.driver.orm_default');
             $chain->addDriver(new XmlDriver(__DIR__ . '/config/xml/zfcuserdoctrineorm'), 'ZfcUserDoctrineORM\Entity');
+        }
+
+        // Add ZfcUser specific entity driver only if specified in configuration
+        if ($options->getEnableEntities()) {
+            $chain = $sm->get('doctrine.driver.orm_default');
+            $chain->addDriver(new XmlDriver(__DIR__ . '/config/xml/zfcuser'), 'ZfcUser\Entity');
         }
     }
 
@@ -54,10 +61,5 @@ class Module
                 },
             ),
         );
-    }
-
-    public function getConfig()
-    {
-        return include __DIR__ . '/config/module.config.php';
     }
 }
