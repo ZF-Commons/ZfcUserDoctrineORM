@@ -28,7 +28,7 @@ Install Zfc Components:
     php composer.phar require zf-commons/zfc-user:~0.1
     php composer.phar require zf-commons/zfc-user-doctrine-orm:~0.1
 
-You do not need to create custom configuration files for the above two modules to work.  ([ref][6])
+For just the basics, you do not need to create custom configuration files for the above two modules to work ([ref][6]).
 
 Set up your Modules in `config/application/application.config.php`, something like
 
