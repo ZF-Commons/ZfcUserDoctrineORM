@@ -2,7 +2,6 @@
 
 namespace ZfcUserDoctrineORM\Entity;
 use Doctrine\ORM\Mapping as ORM;
-use ZfcUser\Entity\User;
 
 /**
  * User
