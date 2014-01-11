@@ -52,6 +52,9 @@ class Module
                         $sm->get('zfcuser_module_options')
                     );
                 },
+                'Zend\Authentication\AuthenticationService' => function ($serviceManager) {
+                	return $serviceManager->get('doctrine.authenticationservice.orm_default');
+                }
             ),
         );
     }
