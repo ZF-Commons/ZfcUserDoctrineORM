@@ -9,7 +9,7 @@ use ZfcUser\Entity\User;
  * User
  *
  * @ORM\MappedSuperclass
- * @ORM\Table(name="user")
+ * @ORM\Table(name="users")
  */
 abstract class MappedSuperclassUser extends User
 {
@@ -32,7 +32,7 @@ abstract class MappedSuperclassUser extends User
 	/**
 	 * @var string
 	 * 
-	 * @ORM\Column(name="email", type="string", length=100, nullable=false) 
+	 * @ORM\Column(name="email", type="string", length=100, nullable=false, unique=true) 
 	 */
 	protected $email;
 	
