@@ -3,7 +3,6 @@
 namespace ZfcUserDoctrineORM;
 
 use Doctrine\ORM\Mapping\Driver\XmlDriver;
-use ZfcUser\Module as ZfcUser;
 
 class Module
 {
@@ -33,13 +32,12 @@ class Module
             ),
         );
     }
-    
+
     public function getServiceConfig()
     {
         return array(
             'aliases' => array(
                 'zfcuser_doctrine_em' => 'doctrine.entitymanager.orm_default',
-
             ),
             'factories' => array(
                 'zfcuser_module_options' => function ($sm) {
