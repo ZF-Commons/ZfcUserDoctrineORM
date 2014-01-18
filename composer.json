@@ -23,6 +23,11 @@
         "zf-commons/zfc-user": "0.*",
         "doctrine/doctrine-orm-module": "0.*"
     },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    },
     "autoload": {
         "psr-0": {
             "ZfcUserDoctrineORM": "src/"
