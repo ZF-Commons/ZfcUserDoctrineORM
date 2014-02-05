@@ -36,10 +36,10 @@ class Module
     public function getServiceConfig()
     {
         return array(
-            'aliases' => array(
-                'zfcuser_doctrine_em' => 'doctrine.entitymanager.orm_default',
-            ),
             'factories' => array(
+                'zfcuser_doctrine_em' => function ($sm) {
+                    return $sm->get('doctrine.entitymanager.orm_default');
+                },
                 'zfcuser_module_options' => function ($sm) {
                     $config = $sm->get('Configuration');
                     return new Options\ModuleOptions(isset($config['zfcuser']) ? $config['zfcuser'] : array());
