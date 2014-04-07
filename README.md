@@ -15,20 +15,13 @@ Dependencies
 
 Installation
 ------------
-If you haven't yet, install Doctrine: ([note on using fixed versioning in composer][4])
-
-    php composer.phar require doctrine/doctrine-orm-module:~0.7
-
 Set up Database Connection Settings for Doctrine ORM:
 
-Namely, go to [Doctrine Connection Settings][5], and copy/paste/modify the example configuration file content into your `config/autoload/doctrine.orm.local.php` file within `MyApp` folder, where `MyApp` is the name of your application.  
+Namely, go to [Doctrine Connection Settings](https://github.com/doctrine/DoctrineORMModule#connection-settings), and copy/paste/modify the example configuration file content into your `config/autoload/doctrine.orm.local.php` file within `Application` folder, where `Application` is the name of your application.  
 
 Install Zfc Components:
 
-    php composer.phar require zf-commons/zfc-user:~0.1
-    php composer.phar require zf-commons/zfc-user-doctrine-orm:~0.1
-
-For just the basics, you do not need to create custom configuration files for the above two modules to work ([ref][6]).
+    php composer.phar require zf-commons/zfc-user-doctrine-orm
 
 Set up your Modules in `config/application/application.config.php`, something like
 
@@ -41,7 +34,9 @@ Set up your Modules in `config/application/application.config.php`, something li
         'Application',
     ),
 
-Using `doctrine-module` you can set up your schema:
+Now, you can use [ZfcUser SQL schema](https://github.com/ZF-Commons/ZfcUser/tree/master/data) to set up your database tables.
+
+Alternatively, you can use `doctrine-module` to do this work for you:
 
     vendor/bin/doctrine-module orm:schema-tool:update --dump-sql
 
@@ -49,8 +44,4 @@ If SQL looks okay, do:
 
     vendor/bin/doctrine-module orm:schema-tool:update --force
 
-You can now navigate to `http://localhost/MyApp/user` and it should work.
-
-  [4]: http://stackoverflow.com/a/14816988/2883328 "composer versioning"
-  [5]: https://github.com/doctrine/DoctrineORMModule#connection-settings
-  [6]: http://stackoverflow.com/a/14781304/2883328
+You can now navigate to `http://localhost/Application/user` and it should work.
