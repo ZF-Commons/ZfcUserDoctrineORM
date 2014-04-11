@@ -17,7 +17,7 @@ Installation
 ------------
 Set up Database Connection Settings for Doctrine ORM:
 
-Namely, go to [Doctrine Connection Settings](https://github.com/doctrine/DoctrineORMModule#connection-settings), and copy/paste/modify the example configuration file content into your `config/autoload/doctrine.orm.local.php` file within `Application` folder, where `Application` is the name of your application.  
+Namely, go to [Doctrine Connection Settings](https://github.com/doctrine/DoctrineORMModule#connection-settings), and copy/paste/modify the example configuration file content into your `config/autoload/doctrine.orm.local.php`.  
 
 Install Zfc Components:
 
@@ -44,4 +44,4 @@ If SQL looks okay, do:
 
     vendor/bin/doctrine-module orm:schema-tool:update --force
 
-You can now navigate to `http://localhost/Application/user` and it should work.
+You can now navigate to `/user` and it should work.
