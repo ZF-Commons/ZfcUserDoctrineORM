@@ -21,7 +21,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "zf-commons/zfc-user": "0.*",
+        "zf-commons/zfc-user": "1.*",
         "doctrine/doctrine-orm-module": "0.*"
     },
     "extra": {
