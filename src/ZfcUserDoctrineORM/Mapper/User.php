@@ -2,7 +2,7 @@
 
 namespace ZfcUserDoctrineORM\Mapper;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use ZfcUser\Mapper\User as ZfcUserMapper;
 use ZfcUserDoctrineORM\Options\ModuleOptions;
 use Zend\Stdlib\Hydrator\HydratorInterface;
@@ -10,7 +10,7 @@ use Zend\Stdlib\Hydrator\HydratorInterface;
 class User extends ZfcUserMapper
 {
     /**
-     * @var \Doctrine\ORM\EntityManager
+     * @var \Doctrine\ORM\EntityManagerInterface
      */
     protected $em;
 
@@ -19,7 +19,7 @@ class User extends ZfcUserMapper
      */
     protected $options;
 
-    public function __construct(EntityManager $em, ModuleOptions $options)
+    public function __construct(EntityManagerInterface $em, ModuleOptions $options)
     {
         $this->em      = $em;
         $this->options = $options;
