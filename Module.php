@@ -12,8 +12,8 @@ class Module
         $sm      = $app->getServiceManager();
         $options = $sm->get('zfcuser_module_options');
 
-        // Add the default entity driver only if specified in configuration
-        if ($options->getEnableDefaultEntities()) {
+        // Add the default entity driver only if function is available(zfcUser1) && specified in configuration
+        if (method_exists($options, "getEnableDefaultEntities") && $options->getEnableDefaultEntities()) {
             $chain = $sm->get('doctrine.driver.orm_default');
             $chain->addDriver(new XmlDriver(__DIR__ . '/config/xml/zfcuserdoctrineorm'), 'ZfcUserDoctrineORM\Entity');
         }
