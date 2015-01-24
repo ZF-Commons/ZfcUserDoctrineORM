@@ -10,7 +10,7 @@ class Module
     {
         $app     = $e->getParam('application');
         $sm      = $app->getServiceManager();
-        $options = $sm->get('zfcuser_module_options');
+        $options = $sm->get('zfcuserdoctrine_module_options');
 
         // Add the default entity driver only if specified in configuration
         if ($options->getEnableDefaultEntities()) {
