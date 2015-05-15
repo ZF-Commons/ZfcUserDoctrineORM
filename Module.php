@@ -37,7 +37,7 @@ class Module
     {
         return array(
             'aliases' => array(
-                'zfcuser_doctrine_em' => 'Doctrine\ORM\EntityManager',
+                'zfcuser_doctrine_em' => 'doctrine.entitymanager.orm_default',
             ),
             'factories' => array(
                 'zfcuser_module_options' => function ($sm) {
