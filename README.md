@@ -47,6 +47,10 @@ Alternatively, you can use `doctrine-module` to do this work for you:
 
     vendor/bin/doctrine-module orm:schema-tool:update --dump-sql
 
+
+Note: If you want to use a different table schema or user entity then you have to set `enable_default_entities` to `false` in the zfcuser [config file](https://github.com/ZF-Commons/ZfcUser/blob/1.x/config/zfcuser.global.php.dist)
+
+
 If SQL looks okay, do: 
 
     vendor/bin/doctrine-module orm:schema-tool:update --force
