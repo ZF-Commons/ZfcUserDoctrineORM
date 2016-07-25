@@ -22,7 +22,7 @@
     "require": {
         "php": ">=5.3.3",
         "zf-commons/zfc-user": "1.*",
-        "doctrine/doctrine-orm-module": "0.*"
+        "doctrine/doctrine-orm-module": "^1.0"
     },
     "extra": {
         "branch-alias": {
