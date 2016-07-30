@@ -6,6 +6,8 @@
     "keywords": [
         "zf2"
     ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "homepage": "https://github.com/ZF-Commons/ZfcUserDoctrineORM",
     "authors": [
         {
