@@ -3,13 +3,21 @@
 namespace ZfcUserDoctrineORM;
 
 use Doctrine\ORM\Mapping\Driver\XmlDriver;
+use Zend\EventManager\EventInterface;
+use Zend\ModuleManager\Feature;
+use Zend\ServiceManager\ServiceManager;
+use ZfcUserDoctrineORM\Options\ModuleOptions;
 
-class Module
+
+class Module implements Feature\AutoloaderProviderInterface, Feature\BootstrapListenerInterface
 {
-    public function onBootstrap($e)
+    public function onBootstrap(EventInterface $e)
     {
-        $app     = $e->getParam('application');
-        $sm      = $app->getServiceManager();
+        $app = $e->getParam('application');
+        /** @var ServiceManager $sm */
+        $sm = $app->getServiceManager();
+
+        /** @var ModuleOptions $options */
         $options = $sm->get('zfcuser_module_options');
 
         // Add the default entity driver only if specified in configuration
@@ -19,6 +27,9 @@ class Module
         }
     }
 
+    /**
+     * @return array
+     */
     public function getAutoloaderConfig()
     {
         return array(
@@ -29,15 +40,6 @@ class Module
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
-            ),
-        );
-    }
-
-    public function getServiceConfig()
-    {
-        return array(
-            'aliases' => array(
-                'zfcuser_doctrine_em' => 'Doctrine\ORM\EntityManager',
             ),
         );
     }

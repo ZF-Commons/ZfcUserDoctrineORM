@@ -8,6 +8,7 @@ return array(
         'aliases'   => array(
             'zfcuser_register_form_hydrator' => 'zfcuser_user_hydrator',
             'zfcuser_zend_db_adapter'        => 'Zend\Db\Adapter\Adapter',
+            'zfcuser_doctrine_em'            => 'Doctrine\ORM\EntityManager',
         ),
     ),
     'doctrine'        => array(
