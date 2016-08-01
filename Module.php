@@ -39,18 +39,6 @@ class Module
             'aliases' => array(
                 'zfcuser_doctrine_em' => 'Doctrine\ORM\EntityManager',
             ),
-            'factories' => array(
-                'zfcuser_module_options' => function ($sm) {
-                    $config = $sm->get('Configuration');
-                    return new Options\ModuleOptions(isset($config['zfcuser']) ? $config['zfcuser'] : array());
-                },
-                'zfcuser_user_mapper' => function ($sm) {
-                    return new \ZfcUserDoctrineORM\Mapper\User(
-                        $sm->get('zfcuser_doctrine_em'),
-                        $sm->get('zfcuser_module_options')
-                    );
-                },
-            ),
         );
     }
 
