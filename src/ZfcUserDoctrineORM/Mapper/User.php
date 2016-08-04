@@ -25,6 +25,12 @@ class User extends ZfcUserMapper
         $this->options = $options;
     }
 
+    public function findAll()
+    {
+        $er = $this->em->getRepository($this->options->getUserEntityClass());
+        return $er->findAll();
+    }
+
     public function findByEmail($email)
     {
         $er = $this->em->getRepository($this->options->getUserEntityClass());
@@ -54,6 +60,12 @@ class User extends ZfcUserMapper
     public function update($entity, $where = null, $tableName = null, HydratorInterface $hydrator = null)
     {
         return $this->persist($entity);
+    }
+
+    public function remove($entity)
+    {
+        $this->em->remove($entity);
+        $this->em->flush();
     }
 
     protected function persist($entity)
