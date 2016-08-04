@@ -1,8 +1,14 @@
 <?php
 
 namespace ZfcUserDoctrineORM\Entity;
+use Doctrine\ORM\Mapping as ORM;
 
-use ZfcUser\Entity\User as ZfcUserEntity;
-
-class User extends ZfcUserEntity
-{}
+/**
+ * User
+ *
+ * @ORM\Entity
+ */
+class User extends MappedSuperclassUser
+{
+	
+}
