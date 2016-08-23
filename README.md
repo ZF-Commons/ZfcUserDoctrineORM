@@ -35,7 +35,6 @@ Set up your Modules in `config/application/application.config.php`, something li
     'modules' => array(
         'DoctrineModule',
         'DoctrineORMModule',
-        'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
         'Application',
