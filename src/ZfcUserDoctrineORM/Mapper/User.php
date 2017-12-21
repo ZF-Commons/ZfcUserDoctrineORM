@@ -3,9 +3,10 @@
 namespace ZfcUserDoctrineORM\Mapper;
 
 use Doctrine\ORM\EntityManagerInterface;
+use ZfcUser\Entity\UserInterface;
 use ZfcUser\Mapper\User as ZfcUserMapper;
 use ZfcUserDoctrineORM\Options\ModuleOptions;
-use Zend\Stdlib\Hydrator\HydratorInterface;
+use Zend\Hydrator\HydratorInterface;
 
 class User extends ZfcUserMapper
 {
@@ -46,12 +47,12 @@ class User extends ZfcUserMapper
         return $er->find($id);
     }
 
-    public function insert($entity, $tableName = null, HydratorInterface $hydrator = null)
+    public function insert(UserInterface $entity, $tableName = null, HydratorInterface $hydrator = null)
     {
         return $this->persist($entity);
     }
 
-    public function update($entity, $where = null, $tableName = null, HydratorInterface $hydrator = null)
+    public function update(UserInterface $entity, $where = null, $tableName = null, HydratorInterface $hydrator = null)
     {
         return $this->persist($entity);
     }
