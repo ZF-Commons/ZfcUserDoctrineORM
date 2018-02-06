@@ -11,18 +11,13 @@
     "homepage": "https://github.com/ZF-Commons/ZfcUserDoctrineORM",
     "authors": [
         {
-            "name": "Evan Coury",
-            "email": "me@evancoury.com",
-            "homepage": "http://blog.evan.pro/"
-        },
-        {
-            "name": "Kyle Spraggs",
-            "email": "theman@spiffyjr.me",
-            "homepage": "http://www.spiffyjr.me/"
+            "name": "Andrey Oprokidnev",
+            "email": "oprokidnev@gmail.com",
+            "homepage": "http://oprokidnev.ru/"
         }
     ],
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=7.0 <7.2",
         "zf-commons/zfc-user": "*",
         "doctrine/doctrine-orm-module": "~1.0 || dev-master"
     },
