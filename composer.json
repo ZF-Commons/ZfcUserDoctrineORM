@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0 <7.2",
+        "php": "^7.1",
         "zf-commons/zfc-user": "*",
         "doctrine/doctrine-orm-module": "~1.0 || dev-master"
     },
@@ -28,5 +28,10 @@
         "classmap": [
             "./"
         ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1.x-dev"
+        }
     }
 }
