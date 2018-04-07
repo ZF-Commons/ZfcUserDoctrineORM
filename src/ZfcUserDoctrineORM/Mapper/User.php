@@ -3,11 +3,11 @@
 namespace ZfcUserDoctrineORM\Mapper;
 
 use Doctrine\ORM\EntityManagerInterface;
-use ZfcUser\Mapper\User as ZfcUserMapper;
+use ZfcUser\Mapper\UserInterface as ZfcUserMapper;
 use ZfcUserDoctrineORM\Options\ModuleOptions;
 use Zend\Stdlib\Hydrator\HydratorInterface;
 
-class User extends ZfcUserMapper
+class User implements ZfcUserMapper
 {
     /**
      * @var \Doctrine\ORM\EntityManagerInterface
