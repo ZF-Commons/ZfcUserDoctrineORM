@@ -1,6 +1,6 @@
 ZfcUserDoctrineORM
 ==================
-Version 0.1.1 Created by Kyle Spraggs and the ZF-Commons team
+Version 3.x Created by Kyle Spraggs and the ZF-Commons team
 
 Introduction
 ------------
@@ -20,6 +20,16 @@ Dependencies
 - [DoctrineModule](https://github.com/doctrine/DoctrineModule)
 - [DoctrineORMModule](https://github.com/doctrine/DoctrineORMModule)
 
+
+Versions
+--------
+Please use below table to figure out what version of ZfcUserDoctrineORM you should use.
+
+| ZfcUserDoctrineORM version | Supported ZfcUser version | Status                                      |
+|----------------------------|---------------------------|---------------------------------------------|
+| 1.x                        | 0.x, 1.x or 2.x           | Security-fixes only                         |
+| 2.x                        | 3.x                       | New features bug-fixes, security-fixes      |
+
 Installation
 ------------
 Set up Database Connection Settings for Doctrine ORM:
@@ -35,7 +45,6 @@ Set up your Modules in `config/application/application.config.php`, something li
     'modules' => array(
         'DoctrineModule',
         'DoctrineORMModule',
-        'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
         'Application',
