@@ -3,13 +3,25 @@
 namespace ZfcUserDoctrineORM;
 
 use Doctrine\ORM\Mapping\Driver\XmlDriver;
+use Zend\EventManager\EventInterface;
+use Zend\ModuleManager\Feature;
+use Zend\ServiceManager\ServiceManager;
+use ZfcUserDoctrineORM\Factory;
+use ZfcUserDoctrineORM\Mapper;
+use ZfcUserDoctrineORM\Options;
+use Doctrine\ORM\EntityManager;
+
 
 class Module
+    implements Feature\AutoloaderProviderInterface, Feature\BootstrapListenerInterface, Feature\ServiceProviderInterface
 {
-    public function onBootstrap($e)
+    public function onBootstrap(EventInterface $e)
     {
-        $app     = $e->getParam('application');
-        $sm      = $app->getServiceManager();
+        $app = $e->getParam('application');
+        /** @var ServiceManager $sm */
+        $sm = $app->getServiceManager();
+
+        /** @var Options\ModuleOptions $options */
         $options = $sm->get('zfcuser_module_options');
 
         // Add the default entity driver only if specified in configuration
@@ -19,6 +31,9 @@ class Module
         }
     }
 
+    /**
+     * @return array
+     */
     public function getAutoloaderConfig()
     {
         return array(
@@ -33,27 +48,27 @@ class Module
         );
     }
 
+    /**
+     * @return array
+     */
     public function getServiceConfig()
     {
         return array(
-            'aliases' => array(
-                'zfcuser_doctrine_em' => 'Doctrine\ORM\EntityManager',
+            'aliases'   => array(
+                'zfcuser_user_mapper'    => Mapper\User::class,
+                'zfcuser_module_options' => Options\ModuleOptions::class,
+                'zfcuser_doctrine_em'    => EntityManager::class,
             ),
             'factories' => array(
-                'zfcuser_module_options' => function ($sm) {
-                    $config = $sm->get('Configuration');
-                    return new Options\ModuleOptions(isset($config['zfcuser']) ? $config['zfcuser'] : array());
-                },
-                'zfcuser_user_mapper' => function ($sm) {
-                    return new \ZfcUserDoctrineORM\Mapper\User(
-                        $sm->get('zfcuser_doctrine_em'),
-                        $sm->get('zfcuser_module_options')
-                    );
-                },
+                Mapper\User::class           => Factory\UserMapperFactory::class,
+                Options\ModuleOptions::class => Factory\ModuleOptionsFactory::class,
             ),
         );
     }
 
+    /**
+     * @return array
+     */
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
