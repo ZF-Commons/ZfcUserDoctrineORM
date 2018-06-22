@@ -6,7 +6,7 @@
 
     <mapped-superclass name="ZfcUser\Entity\User" table="user">
 
-        <id name="id" type="integer" column="user_id">
+        <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
         </id>
 
