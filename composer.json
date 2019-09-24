@@ -22,9 +22,9 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=7.0",
         "zf-commons/zfc-user": "*",
-        "doctrine/doctrine-orm-module": "~1.0"
+        "doctrine/doctrine-orm-module": "^1.0 || ^2.0"
     },
     "autoload": {
         "psr-0": {
