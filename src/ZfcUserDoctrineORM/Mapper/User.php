@@ -46,12 +46,12 @@ class User extends ZfcUserMapper
         return $er->find($id);
     }
 
-    public function insert($entity, $tableName = null, ?HydratorInterface $hydrator = null)
+    public function insert(\ZfcUser\Entity\UserInterface $entity, $tableName = null, HydratorInterface $hydrator = null)
     {
         return $this->persist($entity);
     }
 
-    public function update($entity, $where = null, $tableName = null, ?HydratorInterface $hydrator = null)
+    public function update(\ZfcUser\Entity\UserInterface $entity, $where = null, $tableName = null, HydratorInterface $hydrator = null)
     {
         return $this->persist($entity);
     }
