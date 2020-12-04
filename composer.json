@@ -23,7 +23,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "zf-commons/zfc-user": "*",
+        "zf-commons/zfc-user": "dev-patch-1",
         "doctrine/doctrine-orm-module": "~1.0"
     },
     "autoload": {
