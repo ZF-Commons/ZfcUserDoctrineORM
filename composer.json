@@ -24,7 +24,7 @@
     "require": {
         "php": "^7.2",
         "zf-commons/zfc-user": "~3.0.0",
-        "doctrine/doctrine-orm-module": "~1.0"
+        "doctrine/doctrine-orm-module": "~2.1.7"
     },
     "autoload": {
         "psr-0": {
